@@ -18,6 +18,9 @@ class Category(models.Model):
         verbose_name = _('category')
         verbose_name_plural = _('categories')
 
+    def __str__(self):
+        return self.title
+
 
 class Product(models.Model):
     title = models.CharField(verbose_name=_('title'), max_length=50)
@@ -32,6 +35,9 @@ class Product(models.Model):
         db_table = 'products'
         verbose_name = _('product')
         verbose_name_plural = _('products')
+
+    def __str__(self):
+        return self.title
 
 
 class File(models.Model):
