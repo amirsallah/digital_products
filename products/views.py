@@ -2,8 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import Product, Category
-from .serializer import ProductSerializer, CategorySerializer
+from .models import Product, Category, File
+from .serializer import ProductSerializer, CategorySerializer, FileSerializer
 
 
 class ProductListView(APIView):
@@ -34,5 +34,15 @@ class CategoryDetailView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-#class FileListView(APIView):
- #   def get(self, request, ):
+class FileListView(APIView):
+    def get(self, request, product_id):
+        files = File.objects.filter(product_id=product_id)
+        serializer = FileSerializer(files, many=True, context={'request': request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class FileDetailView(APIView):
+    def get(self, request, pk, product_id):
+        file = File.objects.get(pk=pk, product_id=product_id)
+        serializer = FileSerializer(file, context={'request': request})
+        return Response(serializer.data, status=status.HTTP_200_OK)

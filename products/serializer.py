@@ -3,13 +3,13 @@ from rest_framework import serializers
 from .models import Product, Category, File
 
 
-class CategorySerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Category
-        fields = ('id', 'title', 'description', 'avatar')
+        fields = ('url', 'id', 'title', 'description', 'avatar')
 
 
-class FileSerializer(serializers.ModelSerializer):
+class FileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = File
         fields = ('id', 'title', 'file')

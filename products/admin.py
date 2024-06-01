@@ -12,7 +12,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class FileInlineAdmin(admin.TabularInline):
     model = File
-    fields = ['id', 'title', 'file', 'is_active']
+    fields = ['id', 'title', 'file_type', 'file', 'is_active']
     extra = 0
 
 
